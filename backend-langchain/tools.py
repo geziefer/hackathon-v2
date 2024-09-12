@@ -5,7 +5,6 @@ from langchain_community.retrievers import AzureCognitiveSearchRetriever
 import os
 import config
 
-
 """
 This file holds the tools, that can be bound to the AgentExecutor object.
 Here, we define new functions that the agent can invoke and that help it to solve the tasks. These functions
@@ -34,33 +33,50 @@ def get_db_info() -> str:
 ### TASK 1: GET IIOT DATA (input, ambient, machine, qa) ###
 
 
-@tool
+@tool()
 def get_machine_data(
-    from_timestamp: str | None,
-    to_timestamp: str | None,
-) -> List[float]:
+        from_timestamp: str | None,
+        to_timestamp: str | None,
+        min_material_temperature: float | None,
+        max_material_temperature: float | None,
+        min_motor_rpm: float | None,
+        max_motor_rpm: float | None,
+) -> Dict[str, str]:
     """
-    ### Description of the function
-    ### IMPORTANT! The LLM decides to call it or not based on this docstring!
+    This function can be used to get or retrieve machine data like RPM , pressure, temperature, etc
 
     Args:
-        from_timestamp (str | None): ...
-        to_timestamp (str | None): ...
+        from_timestamp (str | None): Start Timestamp
+        to_timestamp (str | None): End Timestamp
+        min_material_temperature (float | None): Minimum temperature of material
+        max_material_temperature (float | None): Maximum temperature of material
+        min_motor_rpm (float | None): Minimum RPM of motor
+        max_motor_rpm (float | None): Maximum RPM of motor
 
     Returns:
-        List[float]: ...
+        Dict[str, str]: Returns a List of machine data in JSON dictionary format.
+        Each entry has an id , timestamp and set of properties like RPM , pressure, temperature, etc
     """
 
     # Prepare the URL to call the Factory's API (Note: use config.BACKEND_URL)
-    pass
+    url = 'http://4.182.189.203:8080/machine'
+
+    params = {
+        'from_ts': from_timestamp,
+        'to_ts': to_timestamp,
+        'min_material_temperature': min_material_temperature,
+        'max_material_temperature': max_material_temperature,
+        'min_motor_rpm': min_motor_rpm,
+        'max_motor_rpm': max_motor_rpm,
+    }
 
     # Send the request to get the data from the machine endpoint
-    pass
+    response = requests.get(url, params)
+    machine_data_dict: Dict[str, str] = response.json()
+    limited_data = machine_data_dict[:100]
 
     # Optional: Postprocess the data to be in your desired format
-    pass
-
-    return []
+    return limited_data
 
 
 # Question: Do you need to invoke the API Endpoints for the other tables as well? (input, ambient, qa)
@@ -71,7 +87,7 @@ def get_machine_data(
 
 @tool
 def get_logs(
-    from_timestamp: str | None, to_timestamp: str | None
+        from_timestamp: str | None, to_timestamp: str | None
 ) -> List[Dict[str, str]]:
     """
     ### Description of the function
