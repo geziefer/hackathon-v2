@@ -1,0 +1,124 @@
+/* valantic color: rgb(255, 107, 78) */
+
+body {
+    background-color: rgb(30, 30, 30) !important;
+    color: white !important;
+}
+
+#chat-ui-content {
+    padding-left: 20%;
+}
+
+.chat-text-input-wrapper {
+    width: 80% !important;
+    margin-left: 10%;
+    height: 5vh;
+}
+
+.chat-text-input {
+    background-color: rgba(0, 0, 0, 0) !important;
+    border-color: rgb(100, 100, 100) !important;
+    color: white !important;
+}
+
+.chat-text-input::placeholder {
+    color: rgb(100, 100, 100) !important;
+}
+
+.chat-text-input:focus {
+    box-shadow: -1px -1px rgba(255, 255, 255, 0.2), 1px 1px rgba(255, 255, 255, 0.2), -1px 1px rgba(255, 255, 255, 0.2), 1px -1px rgba(255, 255, 255, 0.2) !important;
+}
+
+.chat-text-input-addon {
+    background-color: rgba(0, 0, 0, 0) !important;
+    border-color: rgb(100, 100, 100) !important;
+    color: rgb(100, 100, 100) !important;
+}
+
+.submit-chat-text-button:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.conversation-wrapper {
+    width: 80%;
+    margin-left: 10%;
+    padding-top: 20px;
+    height: 85vh;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    overflow-y: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.conversation-wrapper::-webkit-scrollbar {
+  display: none;
+}
+    
+/* Hide scrollbar for IE, Edge and Firefox */
+.conversation-wrapper {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.chat-row {
+    margin-bottom: 50px;
+}
+
+.clear-chat-btn {
+    width: 16%;
+    left: 2%;
+    position: fixed;
+    bottom: 20px;
+}
+
+.icon-span {
+    margin-right: 15px;
+    font-size: 150%;
+}
+
+.chat-text-span {
+    font-size: 120%;
+}
+
+.icon-col {
+    max-width: 20px !important;
+}
+
+.text-col {
+    margin-top: 5px !important;
+}
+
+.row {
+    max-width: 100%;
+}
+
+.clear-chat-btn {
+    border-color: rgb(255, 107, 78) !important;
+    color: rgb(255, 107, 78) !important;
+}
+
+.clear-chat-btn:hover {
+    border-color: rgb(255, 107, 78) !important;
+    color: white !important;
+    background-color: rgb(255, 107, 78) !important;
+}
+
+
+/* styling for the markdown table that can be generated */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+  
+th, td {
+    padding: 8px;
+    border: 1px solid #7c7c7c !important;
+    text-align: left;
+}
+  
+th {
+    background-color: #303030;
+}
